@@ -9,10 +9,10 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        stage('Build') {
         when {
             branch 'main' 
         }
-        stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
