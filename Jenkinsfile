@@ -9,14 +9,17 @@ pipeline {
         skipStagesAfterUnstable()
     }
     stages {
+        when {
+            branch 'main' 
+        }
         stage('Build') {
-        if(env.BRANCH_NAME == 'main') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        }
-        stage('Test') {
+        
+
+       stage('Test') {
             steps {
                 sh 'mvn test'
             }
