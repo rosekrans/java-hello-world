@@ -10,9 +10,11 @@ pipeline {
     }
     stages {
         stage('Build') {
+        if(env.BRANCH_NAME == 'main') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
             }
+        }
         }
         stage('Test') {
             steps {
@@ -24,9 +26,9 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
+        stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                sh './jenkins/scripts/deliver.sh'
             }
         }
     }
